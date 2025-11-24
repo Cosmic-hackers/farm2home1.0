@@ -7,10 +7,14 @@ import { Label } from '@/components/ui/label'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 import { createClient } from '@/lib/supabase/client'
 import { Loader2 } from 'lucide-react'
-import { useSearchParams } from 'next/navigation'
-import React from 'react'
+import { useRouter, useSearchParams } from 'next/navigation'
+import * as React from 'react'
 
-export default function SignupForm() {
+export function SignupForm() {
+  const [isLoading, setIsLoading] = React.useState<boolean>(false)
+  const [error, setError] = React.useState<string | null>(null)
+  const [success, setSuccess] = React.useState<boolean>(false)
+  const router = useRouter()
   const searchParams = useSearchParams()
   const defaultRole = searchParams.get('role') === 'farmer' ? 'farmer' : 'buyer'
   const [role, setRole] = React.useState<string>(defaultRole)
@@ -60,11 +64,6 @@ export default function SignupForm() {
     router.push('/dashboard')
     router.refresh()
   }
-
-  const [isLoading, setIsLoading] = React.useState<boolean>(false)
-  const [error, setError] = React.useState<string | null>(null)
-  const [success, setSuccess] = React.useState<boolean>(false)
-  const router = useRouter()
 
   if (success) {
     return (
