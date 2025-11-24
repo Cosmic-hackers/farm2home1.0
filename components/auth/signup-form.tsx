@@ -1,22 +1,18 @@
-"use client"
+'use client'
 
-import * as React from "react"
-import { useRouter, useSearchParams } from "next/navigation"
-import { createClient } from "@/lib/supabase/client"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Loader2 } from "lucide-react"
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
+import { createClient } from '@/lib/supabase/client'
+import { Loader2 } from 'lucide-react'
+import { useSearchParams } from 'next/navigation'
+import React from 'react'
 
-export function SignupForm() {
-  const [isLoading, setIsLoading] = React.useState<boolean>(false)
-  const [error, setError] = React.useState<string | null>(null)
-  const [success, setSuccess] = React.useState<boolean>(false)
-  const router = useRouter()
+export default function SignupForm() {
   const searchParams = useSearchParams()
-  const defaultRole = searchParams.get("role") === "farmer" ? "farmer" : "buyer"
+  const defaultRole = searchParams.get('role') === 'farmer' ? 'farmer' : 'buyer'
   const [role, setRole] = React.useState<string>(defaultRole)
   const supabase = createClient()
 
@@ -39,7 +35,9 @@ export function SignupForm() {
       email,
       password,
       options: {
-        emailRedirectTo: process.env.NEXT_PUBLIC_DEV_SUPABASE_REDIRECT_URL || window.location.origin,
+        emailRedirectTo:
+          process.env.NEXT_PUBLIC_DEV_SUPABASE_REDIRECT_URL ||
+          window.location.origin,
         data: {
           full_name: fullName,
           role: role,
@@ -59,9 +57,14 @@ export function SignupForm() {
       return
     }
 
-    router.push("/dashboard")
+    router.push('/dashboard')
     router.refresh()
   }
+
+  const [isLoading, setIsLoading] = React.useState<boolean>(false)
+  const [error, setError] = React.useState<string | null>(null)
+  const [success, setSuccess] = React.useState<boolean>(false)
+  const router = useRouter()
 
   if (success) {
     return (
@@ -70,7 +73,11 @@ export function SignupForm() {
         <AlertDescription className="text-green-700">
           Please check your email to confirm your account before logging in.
           <div className="mt-4">
-            <Button variant="outline" onClick={() => router.push("/auth/login")} className="w-full">
+            <Button
+              variant="outline"
+              onClick={() => router.push('/auth/login')}
+              className="w-full"
+            >
               Go to Login
             </Button>
           </div>
@@ -121,7 +128,11 @@ export function SignupForm() {
           </div>
           <div className="grid gap-2">
             <Label>I am a...</Label>
-            <RadioGroup defaultValue={role} onValueChange={setRole} className="flex gap-4">
+            <RadioGroup
+              defaultValue={role}
+              onValueChange={setRole}
+              className="flex gap-4"
+            >
               <div className="flex items-center space-x-2">
                 <RadioGroupItem value="buyer" id="buyer" />
                 <Label htmlFor="buyer">Buyer</Label>
