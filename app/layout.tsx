@@ -7,9 +7,9 @@ const _geist = Geist({ subsets: ["latin"] });
 const _geistMono = Geist_Mono({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: 'v0 App',
-  description: 'Created with v0',
-  generator: 'v0.app',
+  title: 'Farm2home-cosmoss',
+  description: 'Connect directly with local farmers. Fresh, organic produce from farm to your door.',
+  generator: 'Farm2home-cosmoss',
   icons: {
     icon: [
       {
