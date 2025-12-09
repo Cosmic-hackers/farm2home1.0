@@ -15,10 +15,21 @@ const categories = ["Vegetables", "Fruits", "Dairy", "Meat", "Eggs", "Honey", "G
 
 const units = ["lb", "oz", "kg", "g", "bunch", "unit", "dozen"]
 
-export function ProductForm() {
+interface Product {
+  id: string
+  name: string
+  description: string
+  price: number
+  stock: number
+  unit: string
+  category: string
+  image_url: string | null
+}
+
+export function ProductForm({ product }: { product?: Product }) {
   const [isLoading, setIsLoading] = React.useState<boolean>(false)
   const [imageFile, setImageFile] = React.useState<File | null>(null)
-  const [imagePreview, setImagePreview] = React.useState<string | null>(null)
+  const [imagePreview, setImagePreview] = React.useState<string | null>(product?.image_url || null)
   const router = useRouter()
   const supabase = createClient()
 
@@ -112,7 +123,9 @@ export function ProductForm() {
 
       if (!farm) throw new Error("Failed to create farm for this user")
 
-      let imageUrl = null
+      if (!farm) throw new Error("Failed to create farm for this user")
+
+      let imageUrl = product?.image_url || null
 
       // Upload image if exists
       if (imageFile) {
@@ -126,6 +139,9 @@ export function ProductForm() {
 
         if (uploadError) {
           console.error("[v0] Error uploading image:", uploadError)
+          if (uploadError.message.includes("Bucket not found")) {
+            alert("Error: The 'product-images' storage bucket is missing. Please create a public bucket named 'product-images' in your Supabase dashboard.")
+          }
           throw uploadError
         }
 
@@ -142,7 +158,7 @@ export function ProductForm() {
         imageUrl,
       })
 
-      const { error } = await supabase.from("products").insert({
+      const productData = {
         name: target.name.value,
         description: target.description.value,
         price: Number.parseFloat(target.price.value),
@@ -151,12 +167,24 @@ export function ProductForm() {
         category: target.category.value,
         farm_id: farm.id,
         image_url: imageUrl,
-      })
-
-      if (error) {
-        console.error("[v0] Error creating product:", error)
-        throw error
       }
+
+      if (product) {
+        const { error } = await supabase
+          .from("products")
+          .update(productData)
+          .eq("id", product.id)
+
+        if (error) throw error
+        console.log("[v0] Product updated successfully")
+      } else {
+        const { error } = await supabase.from("products").insert(productData)
+
+        if (error) throw error
+        console.log("[v0] Product created successfully")
+      }
+
+
 
       console.log("[v0] Product created successfully")
       router.push("/dashboard/products")
@@ -174,13 +202,14 @@ export function ProductForm() {
       <div className="space-y-4">
         <div className="grid gap-2">
           <Label htmlFor="name">Product Name</Label>
-          <Input id="name" placeholder="e.g. Organic Carrots" required disabled={isLoading} />
+          <Input id="name" defaultValue={product?.name} placeholder="e.g. Organic Carrots" required disabled={isLoading} />
         </div>
 
         <div className="grid gap-2">
           <Label htmlFor="description">Description</Label>
           <Textarea
             id="description"
+            defaultValue={product?.description}
             placeholder="Describe your product..."
             className="min-h-[100px]"
             disabled={isLoading}
@@ -190,7 +219,7 @@ export function ProductForm() {
         <div className="grid grid-cols-2 gap-4">
           <div className="grid gap-2">
             <Label htmlFor="category">Category</Label>
-            <Select name="category" required disabled={isLoading}>
+            <Select name="category" defaultValue={product?.category} required disabled={isLoading}>
               <SelectTrigger>
                 <SelectValue placeholder="Select category" />
               </SelectTrigger>
@@ -206,7 +235,7 @@ export function ProductForm() {
 
           <div className="grid gap-2">
             <Label htmlFor="unit">Unit</Label>
-            <Select name="unit" required disabled={isLoading}>
+            <Select name="unit" defaultValue={product?.unit} required disabled={isLoading}>
               <SelectTrigger>
                 <SelectValue placeholder="Select unit" />
               </SelectTrigger>
@@ -223,13 +252,13 @@ export function ProductForm() {
 
         <div className="grid grid-cols-2 gap-4">
           <div className="grid gap-2">
-            <Label htmlFor="price">Price ($)</Label>
-            <Input id="price" type="number" step="0.01" min="0" placeholder="0.00" required disabled={isLoading} />
+            <Label htmlFor="price">Price (₹)</Label>
+            <Input id="price" defaultValue={product?.price} type="number" step="0.01" min="0" placeholder="0.00" required disabled={isLoading} />
           </div>
 
           <div className="grid gap-2">
             <Label htmlFor="stock">Stock Quantity</Label>
-            <Input id="stock" type="number" min="0" placeholder="0" required disabled={isLoading} />
+            <Input id="stock" defaultValue={product?.stock} type="number" min="0" placeholder="0" required disabled={isLoading} />
           </div>
         </div>
 
@@ -284,7 +313,7 @@ export function ProductForm() {
       <div className="flex gap-4">
         <Button type="submit" disabled={isLoading}>
           {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-          Create Product
+          {product ? "Update Product" : "Create Product"}
         </Button>
         <Button type="button" variant="outline" onClick={() => router.back()} disabled={isLoading}>
           Cancel

@@ -61,7 +61,7 @@ export function ProductCard({ product }: ProductCardProps) {
       </CardContent>
       <CardFooter className="p-4 pt-0 flex items-center justify-between">
         <div className="font-bold">
-          ${product.price.toFixed(2)}
+          ₹{product.price.toFixed(2)}
           <span className="text-sm font-normal text-muted-foreground">/{product.unit || "unit"}</span>
         </div>
         <Button size="sm" variant="secondary">

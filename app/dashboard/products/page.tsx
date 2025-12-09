@@ -5,6 +5,7 @@ import Link from "next/link"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { Badge } from "@/components/ui/badge"
 
+
 export default async function ProductsPage() {
   const supabase = await createClient()
   const { data: products } = await supabase.from("products").select("*").order("created_at", { ascending: false })
@@ -30,7 +31,6 @@ export default async function ProductsPage() {
               <TableHead>Price</TableHead>
               <TableHead>Stock</TableHead>
               <TableHead>Status</TableHead>
-              <TableHead className="text-right">Actions</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -39,7 +39,7 @@ export default async function ProductsPage() {
                 <TableCell className="font-medium">{product.name}</TableCell>
                 <TableCell>{product.category}</TableCell>
                 <TableCell>
-                  ${product.price.toFixed(2)} / {product.unit}
+                  ₹{product.price.toFixed(2)} / {product.unit}
                 </TableCell>
                 <TableCell>{product.stock}</TableCell>
                 <TableCell>
@@ -50,11 +50,6 @@ export default async function ProductsPage() {
                   ) : (
                     <Badge variant="destructive">Out of Stock</Badge>
                   )}
-                </TableCell>
-                <TableCell className="text-right">
-                  <Button variant="ghost" size="sm">
-                    Edit
-                  </Button>
                 </TableCell>
               </TableRow>
             ))}

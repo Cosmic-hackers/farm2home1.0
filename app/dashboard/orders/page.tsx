@@ -2,6 +2,7 @@ import { createClient } from "@/lib/supabase/server"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { OrderStatusToggle } from "@/components/dashboard/order-status-toggle"
 
 export default async function OrdersPage() {
   const supabase = await createClient()
@@ -71,26 +72,31 @@ export default async function OrdersPage() {
                     ))}
                   </TableCell>
                   <TableCell>{new Date(order.created_at).toLocaleDateString()}</TableCell>
-                  <TableCell>${order.total_amount?.toFixed(2)}</TableCell>
+                  <TableCell>₹{order.total_amount?.toFixed(2)}</TableCell>
                   <TableCell>
-                    <Badge
-                      variant={
-                        order.status === "delivered"
-                          ? "default" // "success" isn't a standard variant, default is usually primary/black
-                          : order.status === "shipped"
-                            ? "secondary"
-                            : "outline"
-                      }
-                      className={
-                        order.status === "delivered"
-                          ? "bg-green-500 hover:bg-green-600"
-                          : order.status === "shipped"
-                            ? "bg-blue-500 hover:bg-blue-600 text-white"
-                            : ""
-                      }
-                    >
-                      {order.status || "Pending"}
-                    </Badge>
+                    <div className="flex items-center gap-2">
+                      <Badge
+                        variant={
+                          order.status === "delivered"
+                            ? "default"
+                            : order.status === "shipped"
+                              ? "secondary"
+                              : "outline"
+                        }
+                        className={
+                          order.status === "delivered"
+                            ? "bg-green-500 hover:bg-green-600"
+                            : order.status === "shipped"
+                              ? "bg-blue-500 hover:bg-blue-600 text-white"
+                              : ""
+                        }
+                      >
+                        {order.status || "Pending"}
+                      </Badge>
+                      {!isBuyer && (
+                        <OrderStatusToggle orderId={order.id} currentStatus={order.status || "pending"} />
+                      )}
+                    </div>
                   </TableCell>
                 </TableRow>
               ))}

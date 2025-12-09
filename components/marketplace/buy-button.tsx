@@ -89,7 +89,7 @@ export function BuyButton({ productId, price, unit }: { productId: string; price
               <Label htmlFor="total" className="text-right">
                 Total
               </Label>
-              <div className="col-span-3 font-bold">${(price * quantity).toFixed(2)}</div>
+              <div className="col-span-3 font-bold">₹{(price * quantity).toFixed(2)}</div>
             </div>
             <div className="grid gap-2">
               <Label htmlFor="address">Delivery Address</Label>

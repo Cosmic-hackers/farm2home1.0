@@ -1,18 +1,18 @@
 import Link from "next/link"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
-import { ArrowRight, Leaf, ShoppingBasket, Truck, Users, Star } from "lucide-react"
+import { ArrowRight, Leaf, ShoppingBasket, Truck, Users, Star, TrendingUp, Shield, Clock, Package } from "lucide-react"
 
 export default function LandingPage() {
   return (
     <div className="flex min-h-screen flex-col">
       <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-        <div className="container flex h-16 items-center justify-between">
-          <div className="flex items-center gap-2 font-bold text-xl text-primary animate-in fade-in slide-in-from-top-4 duration-700">
-            <Leaf className="h-6 w-6" />
+        <div className="container flex h-16 items-center justify-between px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center gap-2 font-bold text-lg sm:text-xl text-primary animate-in fade-in slide-in-from-top-4 duration-700">
+            <Leaf className="h-5 w-5 sm:h-6 sm:w-6" />
             <span>Farm2Home</span>
           </div>
-          <nav className="hidden md:flex items-center gap-6 text-sm font-medium animate-in fade-in slide-in-from-top-4 duration-700 delay-100">
+          <nav className="hidden md:flex items-center gap-4 lg:gap-6 text-sm font-medium animate-in fade-in slide-in-from-top-4 duration-700 delay-100">
             <Link href="#features" className="hover:text-primary transition-colors">
               How it Works
             </Link>
@@ -23,37 +23,37 @@ export default function LandingPage() {
               For Buyers
             </Link>
           </nav>
-          <div className="flex items-center gap-4 animate-in fade-in slide-in-from-top-4 duration-700 delay-200">
-            <Link href="/auth/login">
+          <div className="flex items-center gap-2 sm:gap-4 animate-in fade-in slide-in-from-top-4 duration-700 delay-200">
+            <Link href="/auth/login" className="hidden sm:inline-block">
               <Button variant="ghost" size="sm">
                 Log in
               </Button>
             </Link>
             <Link href="/auth/signup">
-              <Button size="sm">Get Started</Button>
+              <Button size="sm" className="text-xs sm:text-sm">Get Started</Button>
             </Link>
           </div>
         </div>
       </header>
 
       <main className="flex-1">
-        <section className="container grid items-center gap-6 pb-8 pt-6 md:py-10 lg:grid-cols-2 lg:py-24">
+        <section className="container grid items-center gap-6 px-4 sm:px-6 lg:px-8 pb-8 pt-6 md:py-10 lg:grid-cols-2 lg:py-20 xl:py-24">
           <div className="flex flex-col gap-4 animate-in fade-in slide-in-from-left-8 duration-1000">
-            <h1 className="text-4xl font-extrabold tracking-tight lg:text-6xl text-balance">
+            <h1 className="text-3xl font-extrabold tracking-tight sm:text-4xl lg:text-5xl xl:text-6xl text-balance">
               Fresh from the Farm, <span className="text-primary">Direct to Your Door</span>
             </h1>
-            <p className="max-w-[42rem] leading-normal text-muted-foreground sm:text-xl sm:leading-8 text-balance">
+            <p className="max-w-[42rem] leading-normal text-muted-foreground text-base sm:text-lg lg:text-xl sm:leading-8 text-balance">
               Connect directly with local farmers. Buy fresh, organic produce without the middleman. Support your local
               community while eating better.
             </p>
-            <div className="flex gap-4 mt-4">
-              <Link href="/auth/signup">
-                <Button size="lg" className="gap-2 transition-transform hover:scale-105">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mt-4">
+              <Link href="/auth/signup" className="w-full sm:w-auto">
+                <Button size="lg" className="w-full gap-2 transition-transform hover:scale-105">
                   Start Shopping <ArrowRight className="h-4 w-4" />
                 </Button>
               </Link>
-              <Link href="/auth/signup?role=farmer">
-                <Button variant="outline" size="lg" className="transition-transform hover:scale-105 bg-transparent">
+              <Link href="/auth/signup?role=farmer" className="w-full sm:w-auto">
+                <Button variant="outline" size="lg" className="w-full transition-transform hover:scale-105 bg-transparent">
                   Sell Your Produce
                 </Button>
               </Link>
@@ -70,42 +70,42 @@ export default function LandingPage() {
           </div>
         </section>
 
-        <section id="features" className="container py-12 md:py-24 lg:py-32 bg-muted/50 rounded-3xl my-12">
-          <div className="mx-auto flex max-w-[58rem] flex-col items-center justify-center gap-4 text-center animate-in fade-in slide-in-from-bottom-8 duration-1000 view-animate">
-            <h2 className="text-3xl font-bold leading-[1.1] sm:text-3xl md:text-6xl">How Farm2Home Works</h2>
-            <p className="max-w-[85%] leading-normal text-muted-foreground sm:text-lg sm:leading-7">
+        <section id="features" className="container py-12 md:py-20 lg:py-24 bg-muted/50 rounded-3xl my-8 md:my-12 mx-4 sm:mx-6 lg:mx-auto">
+          <div className="mx-auto flex max-w-[58rem] flex-col items-center justify-center gap-4 text-center px-4 animate-in fade-in slide-in-from-bottom-8 duration-1000 view-animate">
+            <h2 className="text-2xl font-bold leading-[1.1] sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl">How Farm2Home Works</h2>
+            <p className="max-w-[85%] leading-normal text-muted-foreground text-sm sm:text-base lg:text-lg sm:leading-7">
               We've simplified the supply chain to bring you fresher food at better prices.
             </p>
           </div>
-          <div className="mx-auto grid justify-center gap-4 sm:grid-cols-2 md:max-w-[64rem] md:grid-cols-3 lg:gap-8 mt-12">
+          <div className="mx-auto grid justify-center gap-4 sm:grid-cols-2 md:max-w-[64rem] lg:grid-cols-3 lg:gap-6 xl:gap-8 mt-8 md:mt-12 px-4">
             <div className="relative overflow-hidden rounded-lg border bg-background p-2 hover:shadow-lg transition-shadow duration-300 animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-100 fill-mode-backwards">
-              <div className="flex h-[180px] flex-col justify-between rounded-md p-6">
-                <Users className="h-12 w-12 text-primary" />
+              <div className="flex h-[180px] flex-col justify-between rounded-md p-4 sm:p-6">
+                <Users className="h-10 w-10 sm:h-12 sm:w-12 text-primary" />
                 <div className="space-y-2">
-                  <h3 className="font-bold">Connect Directly</h3>
-                  <p className="text-sm text-muted-foreground">
+                  <h3 className="font-bold text-base sm:text-lg">Connect Directly</h3>
+                  <p className="text-xs sm:text-sm text-muted-foreground">
                     Chat with farmers, ask questions, and build relationships with the people who grow your food.
                   </p>
                 </div>
               </div>
             </div>
             <div className="relative overflow-hidden rounded-lg border bg-background p-2 hover:shadow-lg transition-shadow duration-300 animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-200 fill-mode-backwards">
-              <div className="flex h-[180px] flex-col justify-between rounded-md p-6">
-                <ShoppingBasket className="h-12 w-12 text-primary" />
+              <div className="flex h-[180px] flex-col justify-between rounded-md p-4 sm:p-6">
+                <ShoppingBasket className="h-10 w-10 sm:h-12 sm:w-12 text-primary" />
                 <div className="space-y-2">
-                  <h3 className="font-bold">Fresh Selection</h3>
-                  <p className="text-sm text-muted-foreground">
+                  <h3 className="font-bold text-base sm:text-lg">Fresh Selection</h3>
+                  <p className="text-xs sm:text-sm text-muted-foreground">
                     Browse seasonal produce, dairy, eggs, and more. Harvested just for you.
                   </p>
                 </div>
               </div>
             </div>
-            <div className="relative overflow-hidden rounded-lg border bg-background p-2 hover:shadow-lg transition-shadow duration-300 animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-300 fill-mode-backwards">
-              <div className="flex h-[180px] flex-col justify-between rounded-md p-6">
-                <Truck className="h-12 w-12 text-primary" />
+            <div className="relative overflow-hidden rounded-lg border bg-background p-2 hover:shadow-lg transition-shadow duration-300 animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-300 fill-mode-backwards sm:col-span-2 lg:col-span-1">
+              <div className="flex h-[180px] flex-col justify-between rounded-md p-4 sm:p-6">
+                <Truck className="h-10 w-10 sm:h-12 sm:w-12 text-primary" />
                 <div className="space-y-2">
-                  <h3 className="font-bold">Local Delivery</h3>
-                  <p className="text-sm text-muted-foreground">
+                  <h3 className="font-bold text-base sm:text-lg">Local Delivery</h3>
+                  <p className="text-xs sm:text-sm text-muted-foreground">
                     Get your order delivered to your doorstep or pick it up at a local community hub.
                   </p>
                 </div>
@@ -114,114 +114,10 @@ export default function LandingPage() {
           </div>
         </section>
 
-        <section className="container py-12 md:py-24">
-          <div className="flex flex-col items-center gap-4 text-center mb-12 animate-in fade-in slide-in-from-bottom-8 duration-1000">
-            <h2 className="text-3xl font-bold leading-[1.1] sm:text-3xl md:text-5xl">Seasonal Favorites</h2>
-            <p className="max-w-[42rem] leading-normal text-muted-foreground sm:text-lg sm:leading-7">
-              Check out what's fresh and in season right now.
-            </p>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
-            {[
-              { name: "Strawberries", price: "$4.99/lb", image: "/ripe-strawberries.png" },
-              { name: "Asparagus", price: "$3.99/lb", image: "/bunch-of-asparagus.png" },
-              { name: "Radishes", price: "$2.49/bunch", image: "/radishes.jpg" },
-              { name: "Spring Onions", price: "$1.99/bunch", image: "/pile-of-onions.png" },
-            ].map((item, i) => (
-              <div
-                key={i}
-                className="group relative overflow-hidden rounded-lg border bg-background hover:shadow-xl transition-all duration-300 animate-in fade-in slide-in-from-bottom-8 duration-1000"
-                style={{ animationDelay: `${i * 100}ms` }}
-              >
-                <div className="aspect-square relative overflow-hidden">
-                  <Image
-                    src={item.image || "/placeholder.svg"}
-                    alt={item.name}
-                    fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-110"
-                  />
-                </div>
-                <div className="p-4">
-                  <h3 className="font-semibold text-lg">{item.name}</h3>
-                  <p className="text-primary font-medium">{item.price}</p>
-                  <Button className="w-full mt-4 opacity-0 group-hover:opacity-100 transition-opacity">
-                    Add to Cart
-                  </Button>
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* Added Featured Farms section for more content */}
-        <section className="bg-muted/30 py-12 md:py-24">
-          <div className="container">
-            <div className="flex flex-col items-center gap-4 text-center mb-12 animate-in fade-in slide-in-from-bottom-8 duration-1000">
-              <h2 className="text-3xl font-bold leading-[1.1] sm:text-3xl md:text-5xl">Featured Farms</h2>
-              <p className="max-w-[42rem] leading-normal text-muted-foreground sm:text-lg sm:leading-7">
-                Meet the local growers bringing fresh food to your table.
-              </p>
-            </div>
-            <div className="grid md:grid-cols-3 gap-8">
-              {[
-                {
-                  name: "Green Valley Organics",
-                  location: "Portland, OR",
-                  desc: "Family owned organic farm since 1985.",
-                  image: "/idyllic-farm.png",
-                },
-                {
-                  name: "Sunny Side Up Farms",
-                  location: "Salem, OR",
-                  desc: "Free range eggs and poultry raised with love.",
-                  image: "/idyllic-farm.png",
-                },
-                {
-                  name: "Rodriguez Family Orchard",
-                  location: "Hood River, OR",
-                  desc: "Best apples, pears, and cherries in the valley.",
-                  image: "/lush-orchard.png",
-                },
-              ].map((farm, i) => (
-                <div
-                  key={i}
-                  className="group overflow-hidden rounded-xl bg-background border shadow-sm hover:shadow-xl transition-all duration-300 animate-in fade-in slide-in-from-bottom-8 duration-1000"
-                  style={{ animationDelay: `${i * 150}ms` }}
-                >
-                  <div className="aspect-video relative overflow-hidden">
-                    <Image
-                      src={farm.image || "/placeholder.svg"}
-                      alt={farm.name}
-                      fill
-                      className="object-cover transition-transform duration-500 group-hover:scale-105"
-                    />
-                    <div className="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors" />
-                  </div>
-                  <div className="p-6">
-                    <h3 className="font-bold text-xl mb-2">{farm.name}</h3>
-                    <div className="flex items-center gap-2 text-sm text-muted-foreground mb-4">
-                      <Leaf className="h-4 w-4" />
-                      <span>{farm.location}</span>
-                    </div>
-                    <p className="text-muted-foreground mb-6">{farm.desc}</p>
-                    <Link href={`/marketplace?farm=${farm.name}`}>
-                      <Button
-                        variant="outline"
-                        className="w-full group-hover:bg-primary group-hover:text-primary-foreground transition-colors bg-transparent"
-                      >
-                        View Products
-                      </Button>
-                    </Link>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="container py-12 md:py-24 lg:py-32">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="relative aspect-square rounded-xl overflow-hidden animate-in fade-in slide-in-from-left-8 duration-1000">
+        {/* For Farmers Section */}
+        <section id="farmers" className="container py-12 md:py-20 lg:py-24 px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-center">
+            <div className="relative aspect-square rounded-xl overflow-hidden order-2 lg:order-1 animate-in fade-in slide-in-from-left-8 duration-1000">
               <Image
                 src="/lush-greenhouse.png"
                 alt="Farmer in field"
@@ -229,34 +125,43 @@ export default function LandingPage() {
                 className="object-cover hover:scale-105 transition-transform duration-700"
               />
             </div>
-            <div className="flex flex-col gap-6 animate-in fade-in slide-in-from-right-8 duration-1000">
-              <h2 className="text-3xl font-bold leading-[1.1] sm:text-3xl md:text-5xl">Empowering Local Farmers</h2>
-              <p className="leading-normal text-muted-foreground sm:text-lg sm:leading-7">
+            <div className="flex flex-col gap-4 md:gap-6 order-1 lg:order-2 animate-in fade-in slide-in-from-right-8 duration-1000">
+              <h2 className="text-2xl font-bold leading-[1.1] sm:text-3xl md:text-4xl lg:text-5xl">For Farmers: Grow Your Business</h2>
+              <p className="leading-normal text-muted-foreground text-sm sm:text-base lg:text-lg sm:leading-7">
                 Farm2Home gives farmers a platform to sell their produce directly to consumers at fair prices. By
                 cutting out the middleman, farmers earn more and you pay less.
               </p>
-              <ul className="grid gap-4">
-                <li className="flex items-center gap-2">
-                  <div className="rounded-full bg-primary/10 p-1">
-                    <ArrowRight className="h-4 w-4 text-primary" />
+              <div className="grid gap-3 md:gap-4">
+                <div className="flex items-start gap-3 p-3 md:p-4 rounded-lg bg-muted/50 hover:bg-muted transition-colors">
+                  <div className="rounded-full bg-primary/10 p-2 mt-1">
+                    <TrendingUp className="h-4 w-4 text-primary" />
                   </div>
-                  <span>Set your own prices and manage inventory</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <div className="rounded-full bg-primary/10 p-1">
-                    <ArrowRight className="h-4 w-4 text-primary" />
+                  <div>
+                    <h3 className="font-semibold text-sm md:text-base mb-1">Set Your Own Prices</h3>
+                    <p className="text-xs md:text-sm text-muted-foreground">Control your pricing and manage inventory with ease</p>
                   </div>
-                  <span>Direct payments to your bank account</span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <div className="rounded-full bg-primary/10 p-1">
-                    <ArrowRight className="h-4 w-4 text-primary" />
+                </div>
+                <div className="flex items-start gap-3 p-3 md:p-4 rounded-lg bg-muted/50 hover:bg-muted transition-colors">
+                  <div className="rounded-full bg-primary/10 p-2 mt-1">
+                    <Shield className="h-4 w-4 text-primary" />
                   </div>
-                  <span>Build a loyal customer base</span>
-                </li>
-              </ul>
-              <Link href="/auth/signup?role=farmer">
-                <Button size="lg" className="w-fit hover:scale-105 transition-transform">
+                  <div>
+                    <h3 className="font-semibold text-sm md:text-base mb-1">Direct Payments</h3>
+                    <p className="text-xs md:text-sm text-muted-foreground">Secure payments directly to your bank account</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3 p-3 md:p-4 rounded-lg bg-muted/50 hover:bg-muted transition-colors">
+                  <div className="rounded-full bg-primary/10 p-2 mt-1">
+                    <Users className="h-4 w-4 text-primary" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-sm md:text-base mb-1">Build Your Community</h3>
+                    <p className="text-xs md:text-sm text-muted-foreground">Connect with loyal customers who value quality</p>
+                  </div>
+                </div>
+              </div>
+              <Link href="/auth/signup?role=farmer" className="w-full sm:w-fit">
+                <Button size="lg" className="w-full sm:w-auto hover:scale-105 transition-transform">
                   Join as a Farmer
                 </Button>
               </Link>
@@ -264,77 +169,71 @@ export default function LandingPage() {
           </div>
         </section>
 
-        <section className="bg-primary/5 py-12 md:py-24">
-          <div className="container">
-            <div className="flex flex-col items-center gap-4 text-center mb-12 animate-in fade-in slide-in-from-bottom-8 duration-1000">
-              <h2 className="text-3xl font-bold leading-[1.1] sm:text-3xl md:text-5xl">What Our Community Says</h2>
-              <p className="max-w-[42rem] leading-normal text-muted-foreground sm:text-lg sm:leading-7">
-                Hear from the farmers and buyers who are changing the way we eat.
-              </p>
-            </div>
-            <div className="grid md:grid-cols-3 gap-8">
-              {[
-                {
-                  quote:
-                    "Farm2Home has completely transformed my business. I can focus on farming while the platform handles the sales.",
-                  author: "Sarah Jenkins",
-                  role: "Farmer",
-                  image: "/diverse-farmers-harvest.png",
-                },
-                {
-                  quote:
-                    "I love knowing exactly where my food comes from. The quality is unmatched and I'm supporting my neighbors.",
-                  author: "Mike Ross",
-                  role: "Buyer",
-                  image: "/man.jpg",
-                },
-                {
-                  quote:
-                    "The direct connection with customers is amazing. I get feedback instantly and can grow what people actually want.",
-                  author: "David Miller",
-                  role: "Farmer",
-                  image: "/diverse-farmers-harvest.png",
-                },
-              ].map((testimonial, i) => (
-                <div
-                  key={i}
-                  className="bg-background p-6 rounded-xl shadow-sm border hover:shadow-md transition-shadow animate-in fade-in slide-in-from-bottom-8 duration-1000"
-                  style={{ animationDelay: `${i * 150}ms` }}
-                >
-                  <div className="flex gap-1 mb-4">
-                    {[1, 2, 3, 4, 5].map((star) => (
-                      <Star key={star} className="h-4 w-4 fill-primary text-primary" />
-                    ))}
-                  </div>
-                  <p className="text-muted-foreground mb-6">"{testimonial.quote}"</p>
-                  <div className="flex items-center gap-3">
-                    <div className="relative h-10 w-10 rounded-full overflow-hidden">
-                      <Image
-                        src={testimonial.image || "/placeholder.svg"}
-                        alt={testimonial.author}
-                        fill
-                        className="object-cover"
-                      />
+        {/* For Buyers Section */}
+        <section id="buyers" className="bg-muted/30 py-12 md:py-20 lg:py-24">
+          <div className="container px-4 sm:px-6 lg:px-8">
+            <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-center">
+              <div className="flex flex-col gap-4 md:gap-6 animate-in fade-in slide-in-from-left-8 duration-1000">
+                <h2 className="text-2xl font-bold leading-[1.1] sm:text-3xl md:text-4xl lg:text-5xl">For Buyers: Fresh, Local, Better</h2>
+                <p className="leading-normal text-muted-foreground text-sm sm:text-base lg:text-lg sm:leading-7">
+                  Discover the freshest produce from local farms. Know exactly where your food comes from and support
+                  your community with every purchase.
+                </p>
+                <div className="grid gap-3 md:gap-4">
+                  <div className="flex items-start gap-3 p-3 md:p-4 rounded-lg bg-background hover:shadow-md transition-shadow">
+                    <div className="rounded-full bg-primary/10 p-2 mt-1">
+                      <Clock className="h-4 w-4 text-primary" />
                     </div>
                     <div>
-                      <p className="font-semibold text-sm">{testimonial.author}</p>
-                      <p className="text-xs text-muted-foreground">{testimonial.role}</p>
+                      <h3 className="font-semibold text-sm md:text-base mb-1">Farm-Fresh Quality</h3>
+                      <p className="text-xs md:text-sm text-muted-foreground">Produce harvested at peak freshness, delivered quickly</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3 p-3 md:p-4 rounded-lg bg-background hover:shadow-md transition-shadow">
+                    <div className="rounded-full bg-primary/10 p-2 mt-1">
+                      <Package className="h-4 w-4 text-primary" />
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-sm md:text-base mb-1">Transparent Sourcing</h3>
+                      <p className="text-xs md:text-sm text-muted-foreground">Know your farmer, know your food's journey</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3 p-3 md:p-4 rounded-lg bg-background hover:shadow-md transition-shadow">
+                    <div className="rounded-full bg-primary/10 p-2 mt-1">
+                      <Leaf className="h-4 w-4 text-primary" />
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-sm md:text-base mb-1">Support Local Economy</h3>
+                      <p className="text-xs md:text-sm text-muted-foreground">Every purchase helps local farmers thrive</p>
                     </div>
                   </div>
                 </div>
-              ))}
+                <Link href="/auth/signup" className="w-full sm:w-fit">
+                  <Button size="lg" className="w-full sm:w-auto hover:scale-105 transition-transform">
+                    Start Shopping Now
+                  </Button>
+                </Link>
+              </div>
+              <div className="relative aspect-square rounded-xl overflow-hidden animate-in fade-in slide-in-from-right-8 duration-1000">
+                <Image
+                  src="/idyllic-farm.png"
+                  alt="Fresh produce"
+                  fill
+                  className="object-cover hover:scale-105 transition-transform duration-700"
+                />
+              </div>
             </div>
           </div>
         </section>
 
-        <section className="container py-12 md:py-24 text-center">
-          <div className="bg-primary text-primary-foreground rounded-3xl p-8 md:p-16 animate-in fade-in zoom-in-95 duration-1000">
-            <h2 className="text-3xl font-bold mb-4 md:text-5xl">Ready to Eat Better?</h2>
-            <p className="text-primary-foreground/80 max-w-2xl mx-auto mb-8 text-lg">
+        <section className="container py-12 md:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 text-center">
+          <div className="bg-primary text-primary-foreground rounded-2xl md:rounded-3xl p-6 sm:p-8 md:p-12 lg:p-16 animate-in fade-in zoom-in-95 duration-1000">
+            <h2 className="text-2xl font-bold mb-3 sm:text-3xl md:text-4xl lg:text-5xl md:mb-4">Ready to Eat Better?</h2>
+            <p className="text-primary-foreground/80 max-w-2xl mx-auto mb-6 md:mb-8 text-sm sm:text-base lg:text-lg">
               Join thousands of others who are supporting local agriculture and enjoying the freshest food possible.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/auth/signup">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
+              <Link href="/auth/signup" className="w-full sm:w-auto">
                 <Button
                   size="lg"
                   variant="secondary"
@@ -343,7 +242,7 @@ export default function LandingPage() {
                   Get Started Now
                 </Button>
               </Link>
-              <Link href="/marketplace">
+              <Link href="/marketplace" className="w-full sm:w-auto">
                 <Button
                   size="lg"
                   variant="outline"
@@ -358,10 +257,10 @@ export default function LandingPage() {
       </main>
 
       <footer className="border-t py-6 md:py-0">
-        <div className="container flex flex-col items-center justify-between gap-4 md:h-24 md:flex-row">
-          <div className="flex flex-col items-center gap-4 px-8 md:flex-row md:gap-2 md:px-0">
-            <Leaf className="h-6 w-6 text-primary" />
-            <p className="text-center text-sm leading-loose text-muted-foreground md:text-left">
+        <div className="container flex flex-col items-center justify-between gap-4 px-4 sm:px-6 lg:px-8 md:h-24 md:flex-row">
+          <div className="flex flex-col items-center gap-4 md:flex-row md:gap-2">
+            <Leaf className="h-5 w-5 sm:h-6 sm:w-6 text-primary" />
+            <p className="text-center text-xs sm:text-sm leading-loose text-muted-foreground md:text-left">
               Built for the community. © 2025 Farm2Home.
             </p>
           </div>

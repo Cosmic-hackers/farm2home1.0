@@ -41,11 +41,7 @@ export function DashboardNav() {
       href: "/dashboard/orders",
       icon: ShoppingCart,
     },
-    {
-      title: "Messages",
-      href: "/dashboard/chat",
-      icon: MessageSquare,
-    },
+
     {
       title: "Settings",
       href: "/dashboard/settings",
@@ -64,11 +60,7 @@ export function DashboardNav() {
       href: "/dashboard/orders",
       icon: Truck,
     },
-    {
-      title: "Messages",
-      href: "/dashboard/chat",
-      icon: MessageSquare,
-    },
+
     {
       title: "Settings",
       href: "/dashboard/settings",

@@ -50,7 +50,7 @@ export async function createOrder(productId: string, quantity: number, address: 
   
 Product: ${product.name}
 Quantity: ${quantity} ${product.unit}
-Total: $${(product.price * quantity).toFixed(2)}
+Total: ₹${(product.price * quantity).toFixed(2)}
 
 Delivery Address:
 ${address}
@@ -67,4 +67,11 @@ Please confirm when shipped.`
 
   revalidatePath("/dashboard/orders")
   return order.id
+}
+
+export async function updateOrderStatus(orderId: string, status: string) {
+  const supabase = await createClient()
+  const { error } = await supabase.from("orders").update({ status }).eq("id", orderId)
+  if (error) throw error
+  revalidatePath("/dashboard/orders")
 }
